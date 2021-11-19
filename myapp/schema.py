@@ -1,5 +1,5 @@
 import graphene
-
+from django.http import HttpResponse,JsonResponse
 from graphene_django import DjangoObjectType, DjangoListField 
 from .models import Book 
 
@@ -12,13 +12,32 @@ class BookType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     all_books = graphene.List(BookType)
-    book = graphene.Field(BookType, book_id=graphene.Int())
+    #recieve a int input
+    book = graphene.Field(BookType, bookid=graphene.Int())
+    
+    #recive a string output
+    #check = graphene.List(BookType,mylist=graphene.String())
+
+
+    #recive a list
+    data = graphene.List(BookType,mylist=graphene.String())
+    
+
+
+   
 
     def resolve_all_books(self, info, **kwargs):
-        return Book.objects.all()
+        return Book.objects.all().order_by('-id')
 
-    def resolve_book(self, info, book_id):
-        return Book.objects.get(pk=book_id)
+    def resolve_book(self, info, bookid):
+        return Book.objects.get(pk=bookid)
+
+    def resolve_data(self,info,mylist):
+        print(mylist)
+        # return Book.objects.filter(id__in=eval(mylist))
+        
+
+        
 
 
 class BookInput(graphene.InputObjectType):
