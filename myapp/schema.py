@@ -20,7 +20,7 @@ class Query(graphene.ObjectType):
 
 
     #recive a list
-    data = graphene.List(BookType,mylist=graphene.String())
+    alllist = graphene.List(BookType,mylist=graphene.String())
     
 
 
@@ -32,9 +32,9 @@ class Query(graphene.ObjectType):
     def resolve_book(self, info, bookid):
         return Book.objects.get(pk=bookid)
 
-    def resolve_data(self,info,mylist):
-        print(mylist)
-        # return Book.objects.filter(id__in=eval(mylist))
+    def resolve_alllist(self,info,mylist):
+        print("this is a",mylist)
+        return Book.objects.filter(id__in=eval(mylist))
         
 
         

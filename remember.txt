@@ -60,3 +60,16 @@ mutation deleteMutation{
     } 
   }
 }
+
+
+
+My custom
+
+query {
+  alllist(mylist:"[1,2,3,4,5]") {
+    id
+    title
+    author
+  
+  }
+  }
