@@ -1,0 +1,75 @@
+To fetch all the db data:
+
+query {
+  allBooks {
+    id
+    title
+    author
+    yearPublished
+    review
+  }
+}
+
+
+To fetch specific data:
+
+
+query {
+  book(bookid: 2) {
+    id
+    title
+    author
+  }
+}
+
+
+Creating a book:
+
+mutation createMutation {
+  createBook(bookData: {title: "Things Apart", author: "Chinua Achebe", yearPublished: "1985", review: 3}) {
+    book {
+      title,
+      author,
+      yearPublished,
+      review
+    }
+  }
+}
+
+
+Update :
+
+mutation updateMutation {
+  updateBook(bookData: {id: 1, title: "Advance python", author: "Chinua Achebe", yearPublished: "1958", review: 5}) {
+    book {
+      title,
+      author,
+      yearPublished,
+      review
+    }
+  }
+}
+
+
+Delete:
+
+mutation deleteMutation{
+  deleteBook(id: 6) {
+    book {
+      id
+    } 
+  }
+}
+
+
+
+My custom
+
+query {
+  alllist(mylist:"[1,2,3,4,5]") {
+    id
+    title
+    author
+  
+  }
+  }
