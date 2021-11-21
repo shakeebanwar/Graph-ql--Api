@@ -16,18 +16,20 @@ class UserViewSet(APIView):
             return Response({'status':False,'message':'invalid index'})
 
         else:
-            queryPattern = ['title', 'author', 'year_published', 'review', 'Super_Admin_Id']
+            queryPattern = ['id','title', 'author', 'year_published', 'review', 'Super_Admin_Id']
             for j in queryPattern:
                 if not j in query:
                     return Response({'status':False,'message':'invalid query parameter'})
 
-            queryset = Book.objects.values(*query)[start:end]
+            queryset = Book.objects.values(*query)[start:]
+            print("objlength is ",len(queryset))
             return Response({'status':True,'data':queryset,'end':end,'total':totalobj})
 
     
     
     def post(self,request):
         for i in range(7000):
+            print("index===>",i)
             Book(title = "TECH",author = "SHAKEEB",year_published = "1998",review = 4).save()
         return Response({"message":"save"})
 

@@ -14,6 +14,7 @@ class Super_AdminAccount(models.Model):
         return self.Fname
 
 class Book(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
     year_published = models.CharField(max_length=50,default="")
